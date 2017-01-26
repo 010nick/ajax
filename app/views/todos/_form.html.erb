@@ -1,27 +1,11 @@
 <%= form_for(todo) do |f| %>
-  <% if todo.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
+  <div class="form-group <%= todo.errors.any? ? 'has-error' : '' %>" id="formgroup-title">
+    <%= f.text_field :title, placeholder: "What needs to be done?", class: 'form-control' %>
 
-      <ul>
+    <% if todo.errors.any? %>
       <% todo.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <span class="help-block"><%= message %></span>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= f.label :completed %>
-    <%= f.check_box :completed %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+    <% end %>
   </div>
 <% end %>
